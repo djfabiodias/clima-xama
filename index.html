@@ -1,97 +1,60 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Xamã Clima Premium</title>
+<title>Clima Xamã</title>
 <style>
-html,body{margin:0;height:100%;background:transparent;font-family:Segoe UI,Arial,sans-serif;overflow:hidden}
-body{color:#fff}
-#wrap{position:relative;width:100vw;height:100vh}
-.top{position:absolute;left:50%;top:3%;transform:translateX(-50%);display:flex;gap:26px}
-.card{
-width:470px;height:180px;border-radius:28px;
-display:flex;align-items:center;justify-content:center;
-background:rgba(8,60,24,.18);
-backdrop-filter:blur(4px);
-box-shadow:0 0 18px rgba(86,255,123,.28), inset 0 0 0 2px rgba(124,255,170,.28);
-}
-.weather{display:flex;align-items:center;gap:18px}
-#icon{font-size:70px}
-.temp{font-size:72px;font-weight:800;line-height:1}
-.city{font-size:28px;font-weight:700}
-.cond{font-size:24px;opacity:.95}
-.clock{text-align:center}
-#clock{font-size:76px;font-weight:800;letter-spacing:2px}
-#date{font-size:28px;margin-top:10px}
-.news{
-position:absolute;left:3%;right:3%;bottom:2%;
-height:46px;border-radius:24px;
-background:rgba(0,70,30,.55);
-display:flex;align-items:center;overflow:hidden;
-box-shadow:0 0 10px rgba(0,0,0,.4);
-}
-.label{padding:0 18px;font-weight:700;color:#c8ff8d}
-.marquee{white-space:nowrap;display:inline-block;padding-left:100%;
-animation:scroll 28s linear infinite}
-@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+html,body{margin:0;width:100%;height:100%;background:transparent;font-family:Arial,sans-serif;color:#fff;overflow:hidden}
+body{display:flex;align-items:center;justify-content:center}
+.container{width:95%;display:flex;justify-content:space-between;align-items:center}
+.left,.right{text-align:center}
+.temp{font-size:82px;font-weight:bold}
+.hum{font-size:34px;margin:10px 0}
+.city,.cond,.date{font-size:28px}
+.time{font-size:82px;font-weight:bold}
+.icon{width:120px;height:120px;margin:auto}
+.good{color:#62ff62}.warn{color:#ffd54f}.bad{color:#ff5c5c}
 </style>
 </head>
 <body>
-<div id="wrap">
-<div class="top">
-<div class="card">
-<div class="weather">
-<div id="icon">☀️</div>
-<div>
+<div class="container">
+<div class="left">
+<svg class="icon" viewBox="0 0 64 64"><circle cx="32" cy="32" r="14" fill="#FDB813"/><g stroke="#FDB813" stroke-width="4"><line x1="32" y1="2" x2="32" y2="12"/><line x1="32" y1="52" x2="32" y2="62"/><line x1="2" y1="32" x2="12" y2="32"/><line x1="52" y1="32" x2="62" y2="32"/><line x1="10" y1="10" x2="17" y2="17"/><line x1="47" y1="47" x2="54" y2="54"/><line x1="10" y1="54" x2="17" y2="47"/><line x1="47" y1="17" x2="54" y2="10"/></g></svg>
 <div class="temp" id="temp">--°C</div>
+<div class="hum" id="hum">💧 Umidade --%</div>
 <div class="cond" id="cond">Carregando...</div>
 <div class="city">Brasília - DF</div>
 </div>
-</div>
-</div>
-<div class="card">
-<div class="clock">
-<div id="clock">00:00</div>
-<div id="date"></div>
-</div>
-</div>
-</div>
-
-<div class="news">
-<div class="label">NOTÍCIAS</div>
-<div class="marquee" id="news">
-Bem-vindo à Xamã Veterinária • Confira aqui o tempo •
-</div>
+<div class="right">
+<div class="time" id="time">00:00</div>
+<div class="date" id="date"></div>
 </div>
 </div>
 <script>
-const codes={
-0:["☀️","Céu limpo"],1:["🌤️","Principalmente limpo"],2:["⛅","Parcialmente nublado"],
-3:["☁️","Nublado"],45:["🌫️","Neblina"],48:["🌫️","Neblina"],
-51:["🌦️","Garoa"],53:["🌦️","Garoa"],55:["🌧️","Garoa"],
-61:["🌧️","Chuva"],63:["🌧️","Chuva"],65:["⛈️","Chuva forte"],
-80:["🌦️","Pancadas"],95:["⛈️","Tempestade"]
-};
-async function clima(){
-try{
-const r=await fetch("https://api.open-meteo.com/v1/forecast?latitude=-15.793889&longitude=-47.882778&current=temperature_2m,weather_code&timezone=America%2FSao_Paulo");
-const j=await r.json();
-const t=Math.round(j.current.temperature_2m);
-const c=codes[j.current.weather_code]||["🌤️","Tempo"];
-icon.textContent=c[0];
-temp.textContent=t+"°C";
-cond.textContent=c[1];
-}catch(e){cond.textContent="Sem conexão";}
+async function weather(){
+ try{
+ const r=await fetch("https://api.open-meteo.com/v1/forecast?latitude=-15.793889&longitude=-47.882778&current=temperature_2m,relative_humidity_2m,weather_code&timezone=America%2FSao_Paulo");
+ const j=await r.json();
+ document.getElementById("temp").textContent=Math.round(j.current.temperature_2m)+"°C";
+ const h=j.current.relative_humidity_2m;
+ const hum=document.getElementById("hum");
+ hum.textContent="💧 Umidade "+h+"%";
+ hum.className="hum "+(h>60?"good":h>=30?"warn":"bad");
+ const mapa={0:"Céu limpo",1:"Principalmente limpo",2:"Parcialmente nublado",3:"Nublado",61:"Chuva",63:"Chuva",65:"Chuva forte",95:"Tempestade"};
+ document.getElementById("cond").textContent=mapa[j.current.weather_code]||"Tempo";
+ }catch(e){
+ document.getElementById("cond").textContent="Sem conexão";
+ }
 }
-function relogio(){
-const d=new Date();
-clock.textContent=d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
-date.textContent=d.toLocaleDateString("pt-BR",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});
+function clock(){
+ const d=new Date();
+ time.textContent=d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
+ date.textContent=d.toLocaleDateString("pt-BR",{weekday:"long",day:"2-digit",month:"2-digit",year:"numeric"});
 }
-clima();relogio();
-setInterval(clima,600000);
-setInterval(relogio,1000);
+weather();clock();
+setInterval(clock,1000);
+setInterval(weather,600000);
 </script>
 </body>
 </html>
