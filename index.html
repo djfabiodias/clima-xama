@@ -1,60 +1,219 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Clima Xamã</title>
-<style>
-html,body{margin:0;width:100%;height:100%;background:transparent;font-family:Arial,sans-serif;color:#fff;overflow:hidden}
-body{display:flex;align-items:center;justify-content:center}
-.container{width:95%;display:flex;justify-content:space-between;align-items:center}
-.left,.right{text-align:center}
-.temp{font-size:82px;font-weight:bold}
-.hum{font-size:34px;margin:10px 0}
-.city,.cond,.date{font-size:28px}
-.time{font-size:82px;font-weight:bold}
-.icon{width:120px;height:120px;margin:auto}
-.good{color:#62ff62}.warn{color:#ffd54f}.bad{color:#ff5c5c}
-</style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Xamã Veterinária • Painel</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
+
+<div class="status-bar">
+
+    <div class="status-left">
+
+        🟢 XAMÃ VETERINÁRIA
+
+    </div>
+
+   <div class="status-center">
+
+    📍 Brasília - DF
+
+    &nbsp;&nbsp;&nbsp;
+
+    🚑 Emergência 24 horas
+
+</div>
+
+    <div class="status-right">
+
+        <span id="statusClock">
+
+            00:00
+
+        </span>
+
+    </div>
+
+</div>
+
 <div class="container">
-<div class="left">
-<svg class="icon" viewBox="0 0 64 64"><circle cx="32" cy="32" r="14" fill="#FDB813"/><g stroke="#FDB813" stroke-width="4"><line x1="32" y1="2" x2="32" y2="12"/><line x1="32" y1="52" x2="32" y2="62"/><line x1="2" y1="32" x2="12" y2="32"/><line x1="52" y1="32" x2="62" y2="32"/><line x1="10" y1="10" x2="17" y2="17"/><line x1="47" y1="47" x2="54" y2="54"/><line x1="10" y1="54" x2="17" y2="47"/><line x1="47" y1="17" x2="54" y2="10"/></g></svg>
-<div class="temp" id="temp">--°C</div>
-<div class="hum" id="hum">💧 Umidade --%</div>
-<div class="cond" id="cond">Carregando...</div>
-<div class="city">Brasília - DF</div>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo-area">
+
+            <img src="assets/logo.png"
+                 class="logo"
+                 alt="Xamã Veterinária">
+
+        </div>
+
+        <div class="clock-area">
+
+            <div id="clock" class="clock">
+                00:00:00
+            </div>
+
+            <div id="date" class="date">
+                Carregando...
+            </div>
+
+            <div id="greeting" class="greeting">
+                Bem-vindo!
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <main class="dashboard">
+
+        <!-- SERVIÇOS -->
+
+        <section class="card services">
+
+            <h2>🩺 Serviços</h2>
+
+            <ul>
+
+                <li>💉 Vacinação</li>
+                <li>🚑 Emergência 24 horas</li>
+                <li>🩺 Consultas</li>
+                <li>🔬 Exames</li>
+                <li>💊 Farmácia</li>
+                <li>❤️ Internação</li>
+
+            </ul>
+
+        </section>
+
+        <!-- CLIMA -->
+
+        <section class="card weather">
+
+            <img
+                id="weatherIcon"
+                class="weather-icon"
+                src="assets/icons/clear-day.svg"
+                alt="Tempo">
+
+            <div id="temperature" class="temperature">
+
+                --
+
+            </div>
+
+            <div id="condition" class="condition">
+
+                Carregando...
+
+            </div>
+
+            <div class="weather-info">
+
+                <div>
+
+                    💧 Umidade:
+                    <span id="humidity">--</span>
+
+                </div>
+
+                <div>
+
+                    🌡 Máx:
+                    <span id="tempMax">--</span>
+
+                </div>
+
+                <div class="weather-info">
+
+    <div class="info-row">
+
+        <span>💧 Umidade</span>
+
+        <span id="humidity">--</span>
+
+    </div>
+
+    <div class="info-row">
+
+        <span>🌡 Máxima</span>
+
+        <span id="tempMax">--</span>
+
+    </div>
+
+    <div class="info-row">
+
+        <span>❄️ Mínima</span>
+
+        <span id="tempMin">--</span>
+
+    </div>
+
+    <div class="info-row">
+
+        <span>💨 Vento</span>
+
+        <span id="wind">--</span>
+
+    </div>
+
+    <div class="info-row">
+
+        <span>📍 Local</span>
+
+        <span>Brasília - DF</span>
+
+    </div>
+
 </div>
-<div class="right">
-<div class="time" id="time">00:00</div>
-<div class="date" id="date"></div>
+        </section>
+
+        <!-- PET -->
+
+        <section class="card pet">
+
+            <img
+                id="petImage"
+                src="assets/pets/pet1.png"
+                alt="Pet">
+
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+    <div class="ticker">
+
+        <div id="footerText" class="ticker-content"></div>
+
+    </div>
+
+</footer>
+
 </div>
-</div>
-<script>
-async function weather(){
- try{
- const r=await fetch("https://api.open-meteo.com/v1/forecast?latitude=-15.793889&longitude=-47.882778&current=temperature_2m,relative_humidity_2m,weather_code&timezone=America%2FSao_Paulo");
- const j=await r.json();
- document.getElementById("temp").textContent=Math.round(j.current.temperature_2m)+"°C";
- const h=j.current.relative_humidity_2m;
- const hum=document.getElementById("hum");
- hum.textContent="💧 Umidade "+h+"%";
- hum.className="hum "+(h>60?"good":h>=30?"warn":"bad");
- const mapa={0:"Céu limpo",1:"Principalmente limpo",2:"Parcialmente nublado",3:"Nublado",61:"Chuva",63:"Chuva",65:"Chuva forte",95:"Tempestade"};
- document.getElementById("cond").textContent=mapa[j.current.weather_code]||"Tempo";
- }catch(e){
- document.getElementById("cond").textContent="Sem conexão";
- }
-}
-function clock(){
- const d=new Date();
- time.textContent=d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
- date.textContent=d.toLocaleDateString("pt-BR",{weekday:"long",day:"2-digit",month:"2-digit",year:"numeric"});
-}
-weather();clock();
-setInterval(clock,1000);
-setInterval(weather,600000);
-</script>
+
+<script src="js/clock.js"></script>
+<script src="js/weather.js"></script>
+<script src="js/pets.js"></script>
+<script src="js/footer.js"></script>
+<script src="js/app.js"></script>
+
 </body>
 </html>

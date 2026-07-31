@@ -1,0 +1,420 @@
+/* ==========================================================
+   XAMÃ VETERINÁRIA - DASHBOARD V4
+========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    overflow:hidden;
+
+}
+
+/*==========================================================*/
+
+body{
+
+    background:
+radial-gradient(
+circle at top,
+#2ca36f 0%,
+#19734f 45%,
+#0d4d37 100%);
+
+    color:#FFF;
+
+}
+
+/*================ STATUS BAR =================*/
+
+.status-bar{
+
+    height:38px;
+
+    background:#063b2b;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 25px;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    color:white;
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+}
+
+.status-left{
+
+    color:#63ff95;
+
+}
+
+.status-center{
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+.status-right{
+
+    color:#FFD54F;
+
+}
+
+/*==========================================================*/
+
+.container{
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+/*====================== HEADER ============================*/
+
+.header{
+
+    height:130px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 50px;
+
+}
+
+.logo{
+
+    height:180px;
+
+}
+
+.clock-area{
+
+    text-align:right;
+
+}
+
+.clock{
+
+    font-size:64px;
+
+    font-weight:bold;
+
+}
+
+.date{
+
+    margin-top:5px;
+
+    font-size:22px;
+
+}
+
+.greeting{
+
+    margin-top:8px;
+
+    color:#FFD54F;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+/*==================== DASHBOARD ===========================*/
+
+.dashboard{
+
+    flex:1;
+
+    display:grid;
+
+    grid-template-columns:
+
+        320px
+        1fr
+        420px;
+
+    gap:30px;
+
+    padding:20px 40px;
+
+}
+
+/*======================= CARD =============================*/
+
+.card{
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.20);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.35);
+
+}
+
+/*====================== SERVIÇOS ==========================*/
+
+.services{
+
+    padding:35px;
+
+}
+
+.services h2{
+
+    text-align:center;
+
+    color:#FFD54F;
+
+    font-size:34px;
+
+    margin-bottom:30px;
+
+}
+
+.services ul{
+
+    list-style:none;
+
+}
+
+.services li{
+
+    font-size:22px;
+
+    margin:22px 0;
+
+}
+
+/*======================= CLIMA ============================*/
+
+.weather{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+}
+
+.weather-icon{
+
+    width:220px;
+
+    margin-bottom:20px;
+
+    animation:flutuar 5s ease-in-out infinite;
+
+}
+
+.temperature{
+
+    font-size:130px;
+
+    font-weight:700;
+
+    line-height:1;
+
+}
+
+..condition{
+
+    font-size:34px;
+
+    font-weight:bold;
+
+    margin-top:15px;
+
+    color:#FFF;
+
+}
+
+.weather-info{
+
+    width:100%;
+
+    border-top:1px solid rgba(255,255,255,.20);
+
+    padding-top:25px;
+
+}
+
+.weather-info{
+
+    width:100%;
+
+    margin-top:20px;
+
+}
+
+.info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px 5px;
+
+    font-size:24px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.info-row:last-child{
+
+    border-bottom:none;
+
+}
+
+/*======================== PET =============================*/
+
+.pet{
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:0;
+
+}
+
+.pet img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    padding:15px;
+
+    filter:drop-shadow(0 15px 25px rgba(0,0,0,.35));
+
+    transition:opacity .6s;
+
+}
+
+/*======================= FOOTER =======================*/
+
+footer{
+
+    height:65px;
+
+    background:#0b3b2c;
+
+    border-top:2px solid rgba(255,255,255,.15);
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+.ticker{
+
+    width:100%;
+
+    overflow:hidden;
+
+}
+
+.ticker-content{
+
+    display:inline-block;
+
+    white-space:nowrap;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#FFF;
+
+    padding-left:100%;
+
+    animation:ticker 50s linear infinite;
+
+}
+
+@keyframes ticker{
+
+    from{
+
+        transform:translateX(0);
+
+    }
+
+    to{
+
+        transform:translateX(-200%);
+
+    }
+
+}
+@keyframes flutuar{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
