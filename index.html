@@ -4,204 +4,279 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Xamã Veterinária • Painel</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/style.css">
+    <title>XAMÃ Veterinária | Painel Digital</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="css/style.css">
 
 </head>
 
 <body>
 
-<div class="status-bar">
+<div class="background"></div>
 
-    <div class="status-left">
+<div class="background-glow"></div>
 
-        🟢 XAMÃ VETERINÁRIA
+<div class="container">
+
+<!-- ===================================================== -->
+<!-- HEADER -->
+<!-- ===================================================== -->
+
+<header class="header">
+
+    <div class="brand">
+
+        <img
+            src="assets/logo.png"
+            class="logo"
+            alt="XAMÃ Veterinária">
 
     </div>
 
-   <div class="status-center">
+    <div class="header-right">
 
-    📍 Brasília - DF
-
-    &nbsp;&nbsp;&nbsp;
-
-    🚑 Emergência 24 horas
-
-</div>
-
-    <div class="status-right">
-
-        <span id="statusClock">
+        <div
+            id="clock"
+            class="clock">
 
             00:00
+
+        </div>
+
+        <div
+            id="date"
+            class="date">
+
+            Carregando...
+
+        </div>
+
+        <div
+            id="greeting"
+            class="greeting">
+
+            Boa tarde!
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- ===================================================== -->
+<!-- CONTEÚDO PRINCIPAL -->
+<!-- ===================================================== -->
+
+<main class="dashboard">
+
+    <!-- ======================================== -->
+    <!-- CLIMA -->
+    <!-- ======================================== -->
+
+    <section class="weather">
+
+        <div class="weather-icon-area">
+
+            <img
+
+                id="weatherIcon"
+
+                class="weather-icon"
+
+                src="assets/icons/clear-day.svg"
+
+                alt="Clima">
+
+        </div>
+
+        <div
+            id="temperature"
+            class="temperature">
+
+            28°
+
+        </div>
+
+        <div
+            id="condition"
+            class="condition">
+
+            PARCIALMENTE NUBLADO
+
+        </div>
+
+    </section>
+
+    <!-- ======================================== -->
+    <!-- PET -->
+    <!-- ======================================== -->
+
+    <section class="pet">
+
+        <img
+
+            id="petImage"
+
+            src="assets/pets/pet1.png"
+
+            alt="Pet do dia">
+
+    </section>
+
+</main>
+
+<!-- ===================================================== -->
+<!-- INFORMAÇÕES DO CLIMA -->
+<!-- ===================================================== -->
+
+<section class="weather-details">
+
+    <div class="weather-item">
+
+        <span class="label">
+
+            Umidade
+
+        </span>
+
+        <span
+
+            id="humidity"
+
+            class="value">
+
+            --%
 
         </span>
 
     </div>
 
-</div>
+    <div class="weather-item">
 
-<div class="container">
+        <span class="label">
 
-    <!-- ================= HEADER ================= -->
+            Máxima
 
-    <header class="header">
+        </span>
 
-        <div class="logo-area">
+        <span
 
-            <img src="assets/logo.png"
-                 class="logo"
-                 alt="Xamã Veterinária">
+            id="tempMax"
 
-        </div>
+            class="value">
 
-        <div class="clock-area">
+            --°
 
-            <div id="clock" class="clock">
-                00:00:00
-            </div>
-
-            <div id="date" class="date">
-                Carregando...
-            </div>
-
-            <div id="greeting" class="greeting">
-                Bem-vindo!
-            </div>
-
-        </div>
-
-    </header>
-
-    <!-- ================= DASHBOARD ================= -->
-
-    <main class="dashboard">
-
-        <!-- SERVIÇOS -->
-
-        <section class="card services">
-
-            <h2>🩺 Serviços</h2>
-
-            <ul>
-
-                <li>💉 Vacinação</li>
-                <li>🚑 Emergência 24 horas</li>
-                <li>🩺 Consultas</li>
-                <li>🔬 Exames</li>
-                <li>💊 Farmácia</li>
-                <li>❤️ Internação</li>
-
-            </ul>
-
-        </section>
-
-        <!-- CLIMA -->
-
-        <section class="card weather">
-
-            <img
-                id="weatherIcon"
-                class="weather-icon"
-                src="assets/icons/clear-day.svg"
-                alt="Tempo">
-
-            <div id="temperature" class="temperature">
-
-                --
-
-            </div>
-
-            <div id="condition" class="condition">
-
-                Carregando...
-
-            </div>
-
-            <div class="weather-info">
-
-                <div>
-
-                    💧 Umidade:
-                    <span id="humidity">--</span>
-
-                </div>
-
-                <div>
-
-                    🌡 Máx:
-                    <span id="tempMax">--</span>
-
-                </div>
-
-                <div class="weather-info">
-
-    <div class="info-row">
-
-        <span>💧 Umidade</span>
-
-        <span id="humidity">--</span>
+        </span>
 
     </div>
 
-    <div class="info-row">
+    <div class="weather-item">
 
-        <span>🌡 Máxima</span>
+        <span class="label">
 
-        <span id="tempMax">--</span>
+            Mínima
 
-    </div>
+        </span>
 
-    <div class="info-row">
+        <span
 
-        <span>❄️ Mínima</span>
+            id="tempMin"
 
-        <span id="tempMin">--</span>
+            class="value">
 
-    </div>
+            --°
 
-    <div class="info-row">
-
-        <span>💨 Vento</span>
-
-        <span id="wind">--</span>
+        </span>
 
     </div>
 
-    <div class="info-row">
+    <div class="weather-item">
 
-        <span>📍 Local</span>
+        <span class="label">
 
-        <span>Brasília - DF</span>
+            Vento
+
+        </span>
+
+        <span
+
+            id="wind"
+
+            class="value">
+
+            -- km/h
+
+        </span>
 
     </div>
 
-</div>
-        </section>
+</section>
 
-        <!-- PET -->
+<!-- ===================================================== -->
+<!-- SERVIÇOS -->
+<!-- ===================================================== -->
 
-        <section class="card pet">
+<section class="services">
 
-            <img
-                id="petImage"
-                src="assets/pets/pet1.png"
-                alt="Pet">
+    <div class="services-title">
 
-        </section>
+        Nossos Serviços
 
-    </main>
+    </div>
 
-    <!-- ================= FOOTER ================= -->
+    <div class="services-list">
 
-    <footer>
+        <span>🩺 Consultas</span>
+
+        <span>•</span>
+
+        <span>💉 Vacinação</span>
+
+        <span>•</span>
+
+        <span>🔬 Exames</span>
+
+        <span>•</span>
+
+        <span>❤️ Internação</span>
+
+        <span>•</span>
+
+        <span>🚑 Emergência 24 Horas</span>
+
+    </div>
+
+</section>
+
+<!-- ===================================================== -->
+<!-- RODAPÉ -->
+<!-- ===================================================== -->
+
+<footer class="footer">
 
     <div class="ticker">
 
-        <div id="footerText" class="ticker-content"></div>
+        <div
+            id="footerText"
+            class="ticker-content">
+
+        </div>
 
     </div>
 
@@ -209,11 +284,20 @@
 
 </div>
 
+<!-- ===================================================== -->
+<!-- JAVASCRIPTS -->
+<!-- ===================================================== -->
+
 <script src="js/clock.js"></script>
+
 <script src="js/weather.js"></script>
+
 <script src="js/pets.js"></script>
+
 <script src="js/footer.js"></script>
+
 <script src="js/app.js"></script>
 
 </body>
+
 </html>
