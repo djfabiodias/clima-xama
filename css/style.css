@@ -1,683 +1,567 @@
-
-/* ==========================================================
-   XAMÃ VETERINÁRIA — DASHBOARD FINAL
-   Painel LED Outdoor | Otimizado para 1920 x 1080
-========================================================== */
-
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* XAMÃ VETERINÁRIA — PAINEL DIGITAL
+   CSS completo — versão de ajuste final baseada no modelo aprovado
+*/
+:root {
+  --green-deep: #001d13;
+  --green-dark: #03281b;
+  --green: #00d66b;
+  --green-soft: #45e991;
+  --mint: #c9f8e4;
+  --yellow: #ffd42a;
+  --white: #fff;
 }
 
-html,
-body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    font-family: 'Montserrat', Arial, sans-serif;
-    background: #071b13;
-    color: #fff;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* ==========================================================
-   FUNDO
-========================================================== */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: var(--green-deep);
+  color: var(--white);
+}
 
 .background {
-    position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(
-            circle at 82% 35%,
-            rgba(42, 190, 112, .25),
-            transparent 42%
-        ),
-        radial-gradient(
-            circle at 15% 80%,
-            rgba(0, 255, 180, .10),
-            transparent 40%
-        ),
-        linear-gradient(
-            135deg,
-            #03130d 0%,
-            #08281d 48%,
-            #0d3c2c 100%
-        );
-    z-index: -3;
+  position: fixed;
+  inset: 0;
+  z-index: -5;
+  background:
+    radial-gradient(ellipse at 72% 38%, rgba(0, 110, 65, 0.42), transparent 48%),
+    radial-gradient(ellipse at 30% 85%, rgba(0, 160, 85, 0.18), transparent 45%),
+    linear-gradient(115deg, #00150d 0%, #003522 48%, #001b12 100%);
+
 }
 
 .background-glow {
-    position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(
-            circle at 20% 30%,
-            rgba(255, 255, 255, .045),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 75% 70%,
-            rgba(255, 255, 255, .035),
-            transparent 35%
-        );
-    z-index: -2;
-    pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: -4;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 100%, rgba(0,255,145,.10), transparent 55%);
 }
-
-/* ==========================================================
-   CONTAINER PRINCIPAL
-========================================================== */
 
 .container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    height: 100dvh;
-    padding: 28px 48px 18px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  padding: clamp(18px, 2.5vh, 32px) clamp(24px, 2.3vw, 46px) clamp(12px, 1.7vh, 22px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-/* ==========================================================
-   CABEÇALHO
-========================================================== */
-
 .header {
-    flex: 0 0 155px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 30px;
+  flex: 0 0 22%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2vw;
 }
 
 .brand {
-    width: 42%;
-    min-width: 0;
-    display: flex;
-    align-items: flex-start;
+  width: 38%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .logo {
-    display: block;
-    width: 350px;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 0 18px rgba(255, 255, 255, .08));
+  display: block;
+  width: clamp(280px, 29vw, 540px);
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(0,255,112,.08));
+}
+
+.brand-slogan {
+  margin: 8px 0 0 18px;
+  color: #e5fff1;
+  font-size: clamp(10px, .82vw, 17px);
+  font-weight: 600;
+  letter-spacing: .25em;
+  white-space: nowrap;
 }
 
 .header-right {
-    flex: 1;
-    min-width: 0;
-    text-align: right;
+  flex: 1;
+  min-width: 0;
+  text-align: right;
 }
 
 .clock {
-    font-size: 116px;
-    font-weight: 800;
-    line-height: .95;
-    letter-spacing: 1px;
-    white-space: nowrap;
-    color: #fff;
-    text-shadow: 0 0 22px rgba(255, 255, 255, .17);
-    animation: clockGlow 4s ease-in-out infinite;
+  font-size: clamp(58px, 5.6vw, 112px);
+  font-weight: 800;
+  line-height: .98;
+  letter-spacing: .01em;
+  white-space: nowrap;
+  color: #fff;
+  text-shadow: 0 0 22px rgba(255,255,255,.13);
 }
 
 .date {
-    margin-top: 8px;
-    font-size: 27px;
-    font-weight: 500;
-    color: #d8e7df;
+  margin-top: 8px;
+  font-size: clamp(17px, 1.45vw, 28px);
+  font-weight: 500;
+  color: #e3f1e9;
 }
 
 .greeting {
-    margin-top: 7px;
-    font-size: 39px;
-    font-weight: 800;
-    color: #ffd64d;
-    text-shadow: 0 0 18px rgba(255, 214, 77, .25);
+  margin-top: 7px;
+  font-size: clamp(25px, 2.1vw, 42px);
+  font-weight: 800;
+  color: var(--yellow);
+  text-shadow: 0 0 16px rgba(255,212,42,.16);
 }
 
-/* ==========================================================
-   ÁREA CENTRAL — CLIMA E FOTO
-========================================================== */
+.greeting-moon {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: .95em;
+}
 
 .dashboard {
-    flex: 1 1 0;
-    min-height: 0;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 40% 60%;
-    align-items: stretch;
-    gap: 0;
-    overflow: hidden;
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 42% 58%;
+  align-items: stretch;
+  gap: 0;
+  overflow: visible;
+  position: relative;
 }
 
 .weather {
-    min-width: 0;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 0 10px 10px 20px;
-    overflow: hidden;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5vw 1vh 1vw;
+}
+
+.weather-main {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.4vw, 28px);
+  width: 100%;
 }
 
 .weather-icon {
-    display: block;
-    flex: 0 1 auto;
-    width: 165px;
-    height: 145px;
-    max-width: 100%;
-    object-fit: contain;
-    margin-bottom: 8px;
-    filter: drop-shadow(0 0 20px rgba(255, 255, 255, .15));
-    animation: weatherFloat 5s ease-in-out infinite;
+  display: block;
+  flex: 0 0 auto;
+  width: clamp(120px, 13.5vw, 250px);
+  height: clamp(120px, 13.5vw, 250px);
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(255,255,255,.12));
 }
 
+.weather-reading { min-width: 0; }
+
 .temperature {
-    flex: 0 0 auto;
-    font-size: 205px;
-    font-weight: 800;
-    line-height: .9;
-    letter-spacing: -5px;
-    color: #fff;
-    white-space: nowrap;
-    text-shadow: 0 0 28px rgba(255, 255, 255, .15);
-    animation: tempGlow 5s ease-in-out infinite;
+  font-size: clamp(118px, 11.2vw, 216px);
+  font-weight: 800;
+  line-height: .82;
+  letter-spacing: -.065em;
+  white-space: nowrap;
+  color: #fff;
+  text-shadow: 0 0 24px rgba(255,255,255,.08);
 }
 
 .condition {
-    flex: 0 0 auto;
-    max-width: 100%;
-    margin-top: 20px;
-    font-size: 34px;
-    font-weight: 800;
-    line-height: 1.2;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #d8efe3;
-    overflow-wrap: anywhere;
+  margin-top: 14px;
+  font-size: clamp(24px, 2.15vw, 42px);
+  font-weight: 800;
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: .025em;
+  color: #c8ffeb;
+  overflow-wrap: anywhere;
 }
 
-/* FOTO DO ANIMAL */
+.weather-message {
+  margin-top: 10px;
+  max-width: 460px;
+  font-size: clamp(14px, 1.15vw, 23px);
+  font-weight: 500;
+  line-height: 1.25;
+  color: #f0fff7;
+}
 
 .pet {
-    width: 100%;
-    height: 100%;
-    min-width: 0;
-    min-height: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
 }
 
 .pet img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    min-height: 0;
-    max-height: 100%;
-    object-fit: contain;
-    object-position: center center;
-    transform: none;
-    transform-origin: center center;
-    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, .3));
-    animation: fadePet .8s ease-out;
-    transition: opacity .8s ease, transform .8s ease;
+  display: block;
+  width: 140%;
+  height: 140%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: center bottom;
+  transform: translate(-3%, -4%);
+  transform-origin: center center;
+  filter: drop-shadow(0 12px 22px rgba(0,0,0,.20));
+  animation: fadePet .8s ease-out;
+  transition: opacity .8s ease, transform .8s ease;
 }
 
-/* ==========================================================
-   INFORMAÇÕES METEOROLÓGICAS
-========================================================== */
-
 .weather-details {
-    position: relative;
-    z-index: 2;
-    flex: 0 0 auto;
-    width: 100%;
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
+  position: relative;
+  z-index: 2;
+  flex: 0 0 12.5%;
+  width: 100%;
+  margin-top: 1.7vh;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: clamp(12px, 1.2vw, 24px);
 }
 
 .weather-item {
-    min-width: 0;
-    min-height: 88px;
-    padding: 12px 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: rgba(255, 255, 255, .055);
-    border: 1px solid rgba(255, 255, 255, .10);
-    border-radius: 15px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+  min-width: 0;
+  padding: 12px clamp(12px, 1.6vw, 32px);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: clamp(14px, 1.7vw, 32px);
+  background: rgba(0,35,23,.52);
+  border: 1.5px solid rgba(0,225,112,.65);
+  border-radius: 22px;
+  box-shadow: inset 0 0 20px rgba(0,255,120,.025);
+}
+
+.detail-icon {
+  display: flex;
+  flex: 0 0 auto;
+  width: clamp(42px, 4.1vw, 78px);
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(40px, 4vw, 72px);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.humidity-icon {
+  position: relative;
+  color: #26c9ff;
+  font-size: 0 !important;
+  width: clamp(42px, 4.1vw, 78px);
+  height: clamp(42px, 4.1vw, 78px);
+}
+.humidity-icon::before {
+  content: "";
+  position: absolute;
+  width: 38%;
+  height: 48%;
+  left: 31%;
+  top: 12%;
+  background: currentColor;
+  border-radius: 55% 55% 55% 0;
+  transform: rotate(-45deg);
+  filter: drop-shadow(0 0 8px rgba(38,201,255,.12));
+}
+
+.max-icon,
+.min-icon {
+  position: relative;
+  font-size: 0 !important;
+  width: clamp(42px, 4.1vw, 78px);
+  height: clamp(48px, 4.5vw, 82px);
+  color: #ff637e;
+}
+.min-icon { color: #58bdff; }
+.max-icon::before,
+.min-icon::before {
+  content: "";
+  position: absolute;
+  width: 20%;
+  height: 55%;
+  left: 40%;
+  top: 8%;
+  border: clamp(3px, .24vw, 5px) solid currentColor;
+  border-radius: 999px 999px 5px 5px;
+  background: transparent;
+}
+.max-icon::after,
+.min-icon::after {
+  content: "";
+  position: absolute;
+  width: 36%;
+  aspect-ratio: 1;
+  left: 32%;
+  bottom: 5%;
+  border: clamp(3px, .24vw, 5px) solid currentColor;
+  border-radius: 50%;
+  background: var(--green-deep);
+  box-shadow: inset 0 0 0 4px currentColor;
+}
+.wind-icon { color: #37e99a; font-size: clamp(48px, 4.8vw, 85px); }
+
+.detail-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .weather-item .label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 19px;
-    font-weight: 500;
-    line-height: 1.2;
-    color: #b7d8c9;
+  display: block;
+  font-size: clamp(17px, 1.35vw, 26px);
+  font-weight: 500;
+  line-height: 1.1;
+  color: #f0fff8;
 }
 
 .weather-item .value {
-    display: block;
-    font-size: 32px;
-    font-weight: 800;
-    line-height: 1.15;
-    color: #fff;
-    overflow-wrap: anywhere;
+  display: block;
+  font-size: clamp(28px, 2.35vw, 46px);
+  font-weight: 800;
+  line-height: 1.05;
+  color: #fff;
+  overflow-wrap: anywhere;
 }
 
-/* ==========================================================
-   SERVIÇOS
-========================================================== */
-
 .services {
-    position: relative;
-    z-index: 2;
-    flex: 0 0 auto;
-    width: 100%;
-    margin-top: 15px;
-    text-align: center;
+  position: relative;
+  z-index: 2;
+  flex: 0 0 14%;
+  width: 100%;
+  margin-top: 1.8vh;
+  text-align: center;
+}
+
+.services-heading {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: clamp(24px, 3.5vw, 68px);
+}
+
+.services-heading > span {
+  height: 2px;
+  background: linear-gradient(90deg, rgba(0,255,125,.95), rgba(0,255,125,.65));
 }
 
 .services-title {
-    margin-bottom: 10px;
-    font-size: 22px;
-    font-weight: 800;
-    color: #7fe8a7;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+  font-size: clamp(24px, 2vw, 40px);
+  font-weight: 800;
+  color: #1eea78;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  white-space: nowrap;
 }
 
 .services-list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px 14px;
-    font-size: 23px;
-    font-weight: 600;
-    line-height: 1.3;
-    color: #fff;
+  margin-top: 1.5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: clamp(8px, 1vw, 20px);
+  font-size: clamp(18px, 1.55vw, 30px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #fff;
 }
 
-.services-list span {
-    white-space: nowrap;
+.service {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, .8vw, 16px);
+  white-space: nowrap;
 }
 
-/* ==========================================================
-   RODAPÉ / TEXTO EM MOVIMENTO
-========================================================== */
+.service-icon {
+  color: #25baff;
+  font-size: clamp(28px, 2.5vw, 48px);
+  line-height: 1;
+}
+
+.service-divider {
+  width: 2px;
+  height: clamp(28px, 3vw, 52px);
+  flex: 0 0 auto;
+  background: #08ed7a;
+}
 
 .footer {
-    position: relative;
-    z-index: 2;
-    flex: 0 0 55px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
+  position: relative;
+  z-index: 2;
+  flex: 0 0 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
 .ticker {
-    width: 100%;
-    overflow: hidden;
-    border-top: 1px solid rgba(127, 232, 167, .25);
-    padding-top: 10px;
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid rgba(127,232,167,.25);
+  padding-top: 6px;
 }
 
 .ticker-content {
-    display: inline-block;
-    white-space: nowrap;
-    padding-left: 100%;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1.3;
-    color: #fff;
-    animation: tickerMove 35s linear infinite;
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #fff;
+  animation: tickerMove 35s linear infinite;
 }
 
-/* ==========================================================
-   ANIMAÇÕES
-========================================================== */
-
-@keyframes clockGlow {
-    0%, 100% {
-        text-shadow: 0 0 12px rgba(255, 255, 255, .12);
-    }
-    50% {
-        text-shadow: 0 0 25px rgba(255, 255, 255, .25);
-    }
+/* Elementos decorativos discretos no fundo */
+.paw {
+  position: fixed;
+  z-index: -1;
+  color: rgba(0,198,82,.18);
+  font-size: 0;
+  width: 160px;
+  height: 130px;
+  pointer-events: none;
 }
 
-@keyframes tempGlow {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.015);
-    }
+.paw::before {
+  content: "";
+  position: absolute;
+  left: 32%;
+  top: 35%;
+  width: 48%;
+  height: 48%;
+  border-radius: 50% 50% 45% 45%;
+  background: currentColor;
+  transform: rotate(35deg);
 }
 
-@keyframes weatherFloat {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-6px);
-    }
+.paw::after {
+  content: "";
+  position: absolute;
+  left: 4%;
+  top: 2%;
+  width: 25%;
+  height: 31%;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 47px -25px 0 currentColor, 93px -6px 0 currentColor, 120px 36px 0 currentColor;
+  transform: rotate(-20deg);
 }
+
+.paw-one { left: 36%; top: 10%; transform: rotate(-18deg) scale(1.45); }
+.paw-two { right: 4%; top: 39%; transform: rotate(18deg) scale(1.2); color: rgba(0,198,82,.12); }
+
+.leaf {
+  position: fixed;
+  z-index: -1;
+  width: 120px;
+  height: 260px;
+  opacity: .13;
+  pointer-events: none;
+  background: linear-gradient(135deg,#37e989,#00653b);
+  border-radius: 100% 0 100% 0;
+}
+
+.leaf::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 8%;
+  width: 2px;
+  height: 85%;
+  background: rgba(190,255,215,.45);
+  transform: rotate(-24deg);
+}
+
+.leaf-left { left: -45px; top: 34%; transform: rotate(-24deg); }
+.leaf-right { right: -38px; top: 38%; transform: rotate(34deg) scale(1.15); }
 
 @keyframes fadePet {
-    from {
-        opacity: 0;
-        transform: scale(.97);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+  from { opacity: 0; transform: translate(-3%,0) scale(.97); }
+  to { opacity: 1; transform: translate(-3%,0) scale(1); }
 }
 
 @keyframes tickerMove {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-100%);
-    }
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
 }
-
-/* ==========================================================
-   TELAS COM ALTURA REDUZIDA
-   Evita que o clima e a foto invadam a barra de informações.
-========================================================== */
 
 @media (max-height: 800px) {
-    .container {
-        padding: 16px 28px 10px;
-    }
-
-    .header {
-        flex-basis: 100px;
-        gap: 20px;
-    }
-
-    .logo {
-        width: 250px;
-    }
-
-    .clock {
-        font-size: clamp(52px, 9vh, 76px);
-    }
-
-    .date {
-        margin-top: 4px;
-        font-size: 17px;
-    }
-
-    .greeting {
-        margin-top: 4px;
-        font-size: 25px;
-    }
-
-    .weather {
-        padding: 0 8px;
-    }
-
-    .weather-icon {
-        width: 82px;
-        height: 78px;
-        margin-bottom: 4px;
-    }
-
-    .temperature {
-        font-size: clamp(72px, 15vh, 120px);
-        letter-spacing: -3px;
-    }
-
-    .condition {
-        margin-top: 8px;
-        font-size: clamp(18px, 3vh, 25px);
-    }
-
-    .weather-details {
-        margin-top: 6px;
-        gap: 8px;
-    }
-
-    .weather-item {
-        min-height: 58px;
-        padding: 6px;
-        border-radius: 10px;
-    }
-
-    .weather-item .label {
-        margin-bottom: 3px;
-        font-size: 13px;
-    }
-
-    .weather-item .value {
-        font-size: 22px;
-    }
-
-    .services {
-        margin-top: 7px;
-    }
-
-    .services-title {
-        margin-bottom: 4px;
-        font-size: 16px;
-    }
-
-    .services-list {
-        gap: 5px 10px;
-        font-size: 16px;
-    }
-
-    .footer {
-        flex-basis: 32px;
-    }
-
-    .ticker {
-        padding-top: 5px;
-    }
-
-    .ticker-content {
-        font-size: 16px;
-    }
+  .container { padding: 14px 28px 10px; }
+  .header { flex-basis: 20%; }
+  .logo { width: clamp(210px, 20vw, 310px); }
+  .brand-slogan { font-size: 9px; margin-top: 5px; }
+  .clock { font-size: clamp(48px, 6.4vw, 76px); }
+  .date { font-size: clamp(14px, 1.3vw, 19px); margin-top: 4px; }
+  .greeting { font-size: clamp(20px, 2vw, 28px); margin-top: 4px; }
+  .weather-icon { width: clamp(82px, 8.5vw, 132px); height: clamp(82px, 8.5vw, 132px); }
+  .temperature { font-size: clamp(82px, 9.4vw, 138px); }
+  .condition { font-size: clamp(18px, 2vw, 26px); margin-top: 8px; }
+  .weather-message { font-size: clamp(11px, 1vw, 15px); margin-top: 6px; }
+  .pet img { width: 148%; height: 148%; transform: translate(-3%, -4%); }
+  .weather-details { flex-basis: 13%; margin-top: 6px; gap: 8px; }
+  .weather-item { border-radius: 13px; padding: 7px 12px; gap: 10px; }
+  .detail-icon { font-size: clamp(27px, 3vw, 42px); width: 36px; }
+  .wind-icon { font-size: clamp(30px, 3vw, 46px); }
+  .weather-item .label { font-size: clamp(12px, 1.1vw, 16px); }
+  .weather-item .value { font-size: clamp(20px, 1.7vw, 26px); }
+  .services { flex-basis: 13%; margin-top: 8px; }
+  .services-title { font-size: clamp(16px, 1.5vw, 22px); }
+  .services-list { margin-top: 7px; font-size: clamp(12px, 1.35vw, 17px); gap: 7px; }
+  .service-icon { font-size: clamp(19px, 2vw, 27px); }
+  .service-divider { height: 25px; }
 }
-
-/* ==========================================================
-   TELAS MUITO BAIXAS
-========================================================== */
 
 @media (max-height: 600px) {
-    .container {
-        padding: 10px 20px 6px;
-    }
-
-    .header {
-        flex-basis: 78px;
-    }
-
-    .logo {
-        width: 190px;
-    }
-
-    .clock {
-        font-size: 48px;
-    }
-
-    .date {
-        font-size: 14px;
-    }
-
-    .greeting {
-        font-size: 20px;
-    }
-
-    .weather-icon {
-        width: 58px;
-        height: 55px;
-    }
-
-    .temperature {
-        font-size: clamp(60px, 12vh, 80px);
-    }
-
-    .condition {
-        margin-top: 5px;
-        font-size: 16px;
-    }
-
-    .weather-details {
-        gap: 5px;
-    }
-
-    .weather-item {
-        min-height: 46px;
-        padding: 4px;
-    }
-
-    .weather-item .label {
-        font-size: 11px;
-    }
-
-    .weather-item .value {
-        font-size: 17px;
-    }
-
-    .services {
-        margin-top: 4px;
-    }
-
-    .services-title {
-        font-size: 13px;
-    }
-
-    .services-list {
-        gap: 4px 8px;
-        font-size: 13px;
-    }
-
-    .footer {
-        flex-basis: 24px;
-    }
-
-    .ticker-content {
-        font-size: 13px;
-    }
+  .header { flex-basis: 18%; }
+  .weather-icon { width: 58px; height: 58px; }
+  .temperature { font-size: clamp(56px, 10vh, 78px); }
+  .condition { font-size: 16px; margin-top: 4px; }
+  .weather-message { display: none; }
+  .pet img { width: 132%; height: 132%; transform: translate(-3%, -3%); }
+  .weather-details { flex-basis: 12%; }
+  .services { flex-basis: 12%; }
+  .services-list { font-size: 12px; }
 }
-
-/* ==========================================================
-   TELAS MAIS ESTREITAS
-========================================================== */
 
 @media (max-width: 900px) {
-    .container {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .header {
-        gap: 12px;
-    }
-
-    .brand {
-        width: 35%;
-    }
-
-    .logo {
-        max-width: 100%;
-    }
-
-    .clock {
-        font-size: clamp(42px, 7vw, 80px);
-    }
-
-    .date {
-        font-size: clamp(12px, 2vw, 20px);
-    }
-
-    .greeting {
-        font-size: clamp(18px, 3vw, 30px);
-    }
-
-    .dashboard {
-        grid-template-columns: 42% 58%;
-    }
-
-    .weather {
-        padding-left: 5px;
-    }
-
-    .temperature {
-        font-size: clamp(68px, 13vw, 150px);
-        letter-spacing: -3px;
-    }
-
-    .condition {
-        font-size: clamp(16px, 2.5vw, 25px);
-    }
-
-    .weather-details {
-        gap: 6px;
-    }
-
-    .weather-item .label {
-        font-size: 13px;
-    }
-
-    .weather-item .value {
-        font-size: 22px;
-    }
-
-    .services-list {
-        font-size: clamp(12px, 1.8vw, 18px);
-    }
-}
-
-/* ==========================================================
-   ACABAMENTO
-========================================================== */
-
-html {
-    scroll-behavior: smooth;
-}
-
-::selection {
-    background: #2fd37c;
-    color: #fff;
-}
-
-::-webkit-scrollbar {
-    display: none;
+  .container { padding-left: 18px; padding-right: 18px; }
+  .header { flex-basis: 20%; }
+  .brand { width: 40%; }
+  .brand-slogan { white-space: normal; letter-spacing: .12em; }
+  .dashboard { grid-template-columns: 46% 54%; }
+  .weather-main { gap: 8px; }
+  .weather-icon { width: clamp(62px, 10.5vw, 108px); height: clamp(62px, 10.5vw, 108px); }
+  .temperature { font-size: clamp(62px, 10.5vw, 102px); }
+  .condition { font-size: clamp(14px, 2.3vw, 20px); }
+  .weather-message { font-size: 11px; }
+  .pet img { width: 136%; height: 136%; transform: translate(-3%, -3%); }
+  .weather-details { gap: 5px; }
+  .weather-item { padding: 5px; gap: 5px; }
+  .detail-icon { width: 24px; font-size: 24px; }
+  .wind-icon { font-size: 26px; }
+  .weather-item .label { font-size: 11px; }
+  .weather-item .value { font-size: 17px; }
+  .services-list { flex-wrap: wrap; justify-content: center; }
+  .service-divider { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-    }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
 }
-
-/* FIM — XAMÃ VETERINÁRIA */

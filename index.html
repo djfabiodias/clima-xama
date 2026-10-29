@@ -1,303 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XAMÃ Veterinária | Painel Digital</title>
-
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
-    <link rel="stylesheet"
-          href="css/style.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
-<div class="background"></div>
-
-<div class="background-glow"></div>
+<div class="background" aria-hidden="true"></div>
+<div class="background-glow" aria-hidden="true"></div>
+<div class="paw paw-one" aria-hidden="true">●</div>
+<div class="paw paw-two" aria-hidden="true">●</div>
+<div class="leaf leaf-left" aria-hidden="true"></div>
+<div class="leaf leaf-right" aria-hidden="true"></div>
 
 <div class="container">
-
-<!-- ===================================================== -->
-<!-- HEADER -->
-<!-- ===================================================== -->
-
-<header class="header">
-
-    <div class="brand">
-
-        <img
-            src="assets/logo.png"
-            class="logo"
-            alt="XAMÃ Veterinária">
-
-    </div>
-
-    <div class="header-right">
-
-        <div
-            id="clock"
-            class="clock">
-
-            00:00
-
+    <header class="header">
+        <div class="brand">
+            <img src="assets/logo.png" class="logo" alt="XAMÃ Veterinária">
+            <div class="brand-slogan">SAÚDE E BEM-ESTAR ANIMAL</div>
         </div>
-
-        <div
-            id="date"
-            class="date">
-
-            Carregando...
-
+        <div class="header-right">
+            <div id="clock" class="clock">00:00</div>
+            <div id="date" class="date">Carregando...</div>
+            <div id="greeting" class="greeting">Boa tarde! <span class="greeting-moon" aria-hidden="true">☾</span></div>
         </div>
+    </header>
 
-        <div
-            id="greeting"
-            class="greeting">
+    <main class="dashboard">
+        <section class="weather">
+            <div class="weather-main">
+                <img id="weatherIcon" class="weather-icon" src="assets/icons/clear-day.svg" alt="Clima">
+                <div class="weather-reading">
+                    <div id="temperature" class="temperature">28°</div>
+                    <div id="condition" class="condition">PARCIALMENTE NUBLADO</div>
+                    <div id="weatherMessage" class="weather-message">Acompanhe a previsão e cuide bem do seu pet.</div>
+                </div>
+            </div>
+        </section>
 
-            Boa tarde!
+        <section class="pet" aria-label="Animais em destaque">
+            <img id="petImage" src="assets/pets/pet1.png" alt="Cachorro e gato">
+        </section>
+    </main>
 
+    <section class="weather-details" aria-label="Detalhes meteorológicos">
+        <div class="weather-item">
+            <span class="detail-icon humidity-icon" aria-hidden="true">●</span>
+            <div class="detail-copy"><span class="label">Umidade</span><span id="humidity" class="value">--%</span></div>
         </div>
-
-    </div>
-
-</header>
-
-<!-- ===================================================== -->
-<!-- CONTEÚDO PRINCIPAL -->
-<!-- ===================================================== -->
-
-<main class="dashboard">
-
-    <!-- ======================================== -->
-    <!-- CLIMA -->
-    <!-- ======================================== -->
-
-    <section class="weather">
-
-        <div class="weather-icon-area">
-
-            <img
-
-                id="weatherIcon"
-
-                class="weather-icon"
-
-                src="assets/icons/clear-day.svg"
-
-                alt="Clima">
-
+        <div class="weather-item">
+            <span class="detail-icon max-icon" aria-hidden="true">♨</span>
+            <div class="detail-copy"><span class="label">Máxima</span><span id="tempMax" class="value">--°</span></div>
         </div>
-
-        <div
-            id="temperature"
-            class="temperature">
-
-            28°
-
+        <div class="weather-item">
+            <span class="detail-icon min-icon" aria-hidden="true">♨</span>
+            <div class="detail-copy"><span class="label">Mínima</span><span id="tempMin" class="value">--°</span></div>
         </div>
-
-        <div
-            id="condition"
-            class="condition">
-
-            PARCIALMENTE NUBLADO
-
+        <div class="weather-item">
+            <span class="detail-icon wind-icon" aria-hidden="true">≋</span>
+            <div class="detail-copy"><span class="label">Vento</span><span id="wind" class="value">-- km/h</span></div>
         </div>
-
     </section>
 
-    <!-- ======================================== -->
-    <!-- PET -->
-    <!-- ======================================== -->
-
-    <section class="pet">
-
-        <img
-
-            id="petImage"
-
-            src="assets/pets/pet1.png"
-
-            alt="Pet do dia">
-
+    <section class="services">
+        <div class="services-heading"><span></span><div class="services-title">NOSSOS SERVIÇOS</div><span></span></div>
+        <div class="services-list">
+            <div class="service"><span class="service-icon">♧</span><span>Consultas</span></div>
+            <i class="service-divider" aria-hidden="true"></i>
+            <div class="service"><span class="service-icon">💉</span><span>Vacinação</span></div>
+            <i class="service-divider" aria-hidden="true"></i>
+            <div class="service"><span class="service-icon">⚗</span><span>Exames</span></div>
+            <i class="service-divider" aria-hidden="true"></i>
+            <div class="service"><span class="service-icon">♥</span><span>Internação</span></div>
+            <i class="service-divider" aria-hidden="true"></i>
+            <div class="service"><span class="service-icon">🚑</span><span>Emergência 24 Horas</span></div>
+        </div>
     </section>
 
-</main>
-
-<!-- ===================================================== -->
-<!-- INFORMAÇÕES DO CLIMA -->
-<!-- ===================================================== -->
-
-<section class="weather-details">
-
-    <div class="weather-item">
-
-        <span class="label">
-
-            Umidade
-
-        </span>
-
-        <span
-
-            id="humidity"
-
-            class="value">
-
-            --%
-
-        </span>
-
-    </div>
-
-    <div class="weather-item">
-
-        <span class="label">
-
-            Máxima
-
-        </span>
-
-        <span
-
-            id="tempMax"
-
-            class="value">
-
-            --°
-
-        </span>
-
-    </div>
-
-    <div class="weather-item">
-
-        <span class="label">
-
-            Mínima
-
-        </span>
-
-        <span
-
-            id="tempMin"
-
-            class="value">
-
-            --°
-
-        </span>
-
-    </div>
-
-    <div class="weather-item">
-
-        <span class="label">
-
-            Vento
-
-        </span>
-
-        <span
-
-            id="wind"
-
-            class="value">
-
-            -- km/h
-
-        </span>
-
-    </div>
-
-</section>
-
-<!-- ===================================================== -->
-<!-- SERVIÇOS -->
-<!-- ===================================================== -->
-
-<section class="services">
-
-    <div class="services-title">
-
-        Nossos Serviços
-
-    </div>
-
-    <div class="services-list">
-
-        <span>🩺 Consultas</span>
-
-        <span>•</span>
-
-        <span>💉 Vacinação</span>
-
-        <span>•</span>
-
-        <span>🔬 Exames</span>
-
-        <span>•</span>
-
-        <span>❤️ Internação</span>
-
-        <span>•</span>
-
-        <span>🚑 Emergência 24 Horas</span>
-
-    </div>
-
-</section>
-
-<!-- ===================================================== -->
-<!-- RODAPÉ -->
-<!-- ===================================================== -->
-
-<footer class="footer">
-
-    <div class="ticker">
-
-        <div
-            id="footerText"
-            class="ticker-content">
-
-        </div>
-
-    </div>
-
-</footer>
-
+    <footer class="footer">
+        <div class="ticker"><div id="footerText" class="ticker-content"></div></div>
+    </footer>
 </div>
 
-<!-- ===================================================== -->
-<!-- JAVASCRIPTS -->
-<!-- ===================================================== -->
-
 <script src="js/clock.js"></script>
-
 <script src="js/weather.js"></script>
-
 <script src="js/pets.js"></script>
-
 <script src="js/footer.js"></script>
-
 <script src="js/app.js"></script>
-
 </body>
-
 </html>
